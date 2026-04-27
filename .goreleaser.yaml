@@ -2,10 +2,36 @@ version: 2
 
 before:
   hooks:
-    - go mod tidy
+    - GOWORK=off go mod tidy
 
 builds:
-  - skip: true
+  - id: workflow-plugin-ws-auth
+    main: ./cmd/workflow-plugin-ws-auth
+    binary: workflow-plugin-ws-auth
+    env:
+      - CGO_ENABLED=0
+      - GOWORK=off
+      - GOPRIVATE=github.com/GoCodeAlone/*
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X github.com/GoCodeAlone/workflow-plugin-ws-auth/internal.Version={{ .Version }}
+
+archives:
+  - formats: [tar.gz]
+    name_template: "{{ .ProjectName }}-{{ .Os }}-{{ .Arch }}"
+    files:
+      - plugin.json
+      - plugin.contracts.json
+      - LICENSE
+
+checksum:
+  name_template: "checksums.txt"
 
 changelog:
   sort: asc
