@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package workflow.plugins.ws_auth.v1;
+
+option go_package = "github.com/GoCodeAlone/workflow-plugin-ws-auth/internal/contracts";
+
+message HMACAuthConfig {
+  string shared_secret = 1;
+  string server_id = 2;
+}
+
+message AuthIdentityConfig {
+  string connection_id = 1;
+}
+
+message AuthIdentityInput {
+  string connection_id = 1;
+}
+
+message AuthIdentityOutput {
+  string player_id = 1;
+  bool authenticated = 2;
+  string error = 100;
+}

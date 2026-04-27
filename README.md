@@ -73,7 +73,7 @@ go test ./...
 ```
 
 Requires Go 1.26+ and depends on:
-- `github.com/GoCodeAlone/workflow` v0.3.52
+- `github.com/GoCodeAlone/workflow` v0.19.0
 - `golang.org/x/crypto` (HKDF)
 
 ## License

@@ -1,0 +1,19 @@
+{
+  "version": "v1",
+  "contracts": [
+    {
+      "kind": "module",
+      "type": "ws_auth.hmac",
+      "mode": "strict",
+      "config": "workflow.plugins.ws_auth.v1.HMACAuthConfig"
+    },
+    {
+      "kind": "step",
+      "type": "step.ws_auth_identity",
+      "mode": "strict",
+      "config": "workflow.plugins.ws_auth.v1.AuthIdentityConfig",
+      "input": "workflow.plugins.ws_auth.v1.AuthIdentityInput",
+      "output": "workflow.plugins.ws_auth.v1.AuthIdentityOutput"
+    }
+  ]
+}
