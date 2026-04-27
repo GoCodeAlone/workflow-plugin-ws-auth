@@ -2,7 +2,7 @@ version: 2
 
 before:
   hooks:
-    - GOWORK=off go mod tidy
+    - sh -c "GOWORK=off go mod tidy"
 
 builds:
   - id: workflow-plugin-ws-auth
