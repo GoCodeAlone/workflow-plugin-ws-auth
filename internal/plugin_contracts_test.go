@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"context"
 	"encoding/json"
 	"os"
 	"path/filepath"
@@ -80,7 +81,7 @@ func TestTypedProvidersValidateConfigAndUseTypedInput(t *testing.T) {
 	if err != nil {
 		t.Fatalf("CreateTypedModule: %v", err)
 	}
-	if err := module.Stop(nil); err != nil {
+	if err := module.Stop(context.Background()); err != nil {
 		t.Fatalf("Stop: %v", err)
 	}
 
@@ -94,7 +95,7 @@ func TestTypedProvidersValidateConfigAndUseTypedInput(t *testing.T) {
 
 	SetGlobalEnforcer(NewProtocolEnforcer([]byte("secret"), "server"))
 	t.Cleanup(func() { SetGlobalEnforcer(nil) })
-	stepResult, err := typedAuthIdentity(nil, sdk.TypedStepRequest[*contracts.AuthIdentityConfig, *contracts.AuthIdentityInput]{
+	stepResult, err := typedAuthIdentity(context.Background(), sdk.TypedStepRequest[*contracts.AuthIdentityConfig, *contracts.AuthIdentityInput]{
 		Input: &contracts.AuthIdentityInput{ConnectionId: "conn-1"},
 	})
 	if err != nil {
@@ -111,7 +112,7 @@ func TestTypedAuthIdentityInputOverridesStaticConfig(t *testing.T) {
 	SetGlobalEnforcer(enforcer)
 	t.Cleanup(func() { SetGlobalEnforcer(nil) })
 
-	stepResult, err := typedAuthIdentity(nil, sdk.TypedStepRequest[*contracts.AuthIdentityConfig, *contracts.AuthIdentityInput]{
+	stepResult, err := typedAuthIdentity(context.Background(), sdk.TypedStepRequest[*contracts.AuthIdentityConfig, *contracts.AuthIdentityInput]{
 		Config: &contracts.AuthIdentityConfig{ConnectionId: "static-conn"},
 		Input:  &contracts.AuthIdentityInput{ConnectionId: "runtime-conn"},
 	})

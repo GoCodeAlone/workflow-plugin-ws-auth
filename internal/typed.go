@@ -8,6 +8,9 @@ import (
 )
 
 func typedAuthIdentity(ctx context.Context, req sdk.TypedStepRequest[*contracts.AuthIdentityConfig, *contracts.AuthIdentityInput]) (*sdk.TypedStepResult[*contracts.AuthIdentityOutput], error) {
+	if ctx == nil {
+		ctx = context.Background()
+	}
 	config := mergeMaps(authIdentityConfigToMap(req.Config), authIdentityInputToMap(req.Input))
 	step, err := newAuthIdentityStep("", nil)
 	if err != nil {
@@ -62,7 +65,10 @@ func mergeMaps(maps ...map[string]any) map[string]any {
 func compactMap(values map[string]any) map[string]any {
 	out := map[string]any{}
 	for key, value := range values {
-		if value == "" || value == nil {
+		if value == nil {
+			continue
+		}
+		if s, ok := value.(string); ok && s == "" {
 			continue
 		}
 		out[key] = value
