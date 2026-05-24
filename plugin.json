@@ -1,13 +1,18 @@
 {
   "name": "workflow-plugin-ws-auth",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "WebSocket HMAC authentication with challenge-response handshake and per-connection keys",
   "author": "GoCodeAlone",
   "license": "MIT",
   "type": "external",
   "tier": "community",
   "minEngineVersion": "0.51.7",
-  "keywords": ["websocket", "hmac", "auth", "challenge-response"],
+  "keywords": [
+    "websocket",
+    "hmac",
+    "auth",
+    "challenge-response"
+  ],
   "homepage": "https://github.com/GoCodeAlone/workflow-plugin-ws-auth",
   "repository": "https://github.com/GoCodeAlone/workflow-plugin-ws-auth",
   "downloads": [
@@ -44,8 +49,12 @@
   ],
   "capabilities": {
     "configProvider": false,
-    "moduleTypes": ["ws_auth.hmac"],
-    "stepTypes": ["step.ws_auth_identity"],
+    "moduleTypes": [
+      "ws_auth.hmac"
+    ],
+    "stepTypes": [
+      "step.ws_auth_identity"
+    ],
     "triggerTypes": []
   }
 }
