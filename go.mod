@@ -3,7 +3,7 @@ module github.com/GoCodeAlone/workflow-plugin-ws-auth
 go 1.26.1
 
 require (
-	github.com/GoCodeAlone/workflow v0.62.0
+	github.com/GoCodeAlone/workflow v0.64.0
 	golang.org/x/crypto v0.51.0
 	google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af
 )
