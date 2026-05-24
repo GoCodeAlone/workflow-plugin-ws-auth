@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	sdk.Serve(internal.NewWSAuthPlugin())
+	sdk.Serve(internal.NewWSAuthPlugin(), sdk.WithBuildVersion(sdk.ResolveBuildVersion(internal.Version)))
 }
